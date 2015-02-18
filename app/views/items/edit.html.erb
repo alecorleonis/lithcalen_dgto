@@ -1,0 +1,6 @@
+<h1>Editing item</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', item_path(:id => @item.id, :list_id => @item.list_id) %> |
+<%= link_to 'Back', {:controller => :items, :action=>'index', :list_id => params[:list_id]} %>

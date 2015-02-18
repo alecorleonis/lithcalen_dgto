@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  list_id: 1
+  item_name: MyString
+  item_description: MyText
+  item_rating: 1
+  item_recommendation: false
+
+two:
+  list_id: 1
+  item_name: MyString
+  item_description: MyText
+  item_rating: 1
+  item_recommendation: false

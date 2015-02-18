@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>List:</strong>
+  <%= @item.list.list_name%>
+</p>
+
+<p>
+  <strong>Item name:</strong>
+  <%= @item.item_name %>
+</p>
+
+<p>
+  <strong>Item description:</strong>
+  <%= @item.item_description %>
+</p>
+
+<p>
+  <strong>Item rating:</strong>
+  <%= @item.item_rating %>
+</p>
+
+<p>
+  <strong>Item recommendation:</strong>
+  <%= @item.item_recommendation %>
+</p>
+
+<% if current_user.id == User.find_by_id(List.find_by_id(params[:list_id]).user_id).id %>
+<%= link_to 'Edit', edit_item_path(:id => @item.id, :list_id => @item.list_id) %> | <% end %>
+<%= link_to 'Back', {:controller => :items, :action=>'index', :list_id => @item.list_id} %>

@@ -1,35 +1,34 @@
 <p id="notice"><%= notice %></p>
-<h1>Listing Items From List: <%= List.find_by_id(params[:list_id]).list_name %>, From User: <%= User.find_by_id(List.find_by_id(params[:list_id]).user_id).username %></h1>
+<% if current_user.id == User.find_by_id(List.find_by_id(params[:list_id]).user_id).id %>
+	<h1><%= List.find_by_id(params[:list_id]).list_name %></h1>
+<% else %>
+	<h1><%= List.find_by_id(params[:list_id]).list_name %></h1>
+	<h2> de: <%= User.find_by_id(List.find_by_id(params[:list_id]).user_id).username %></h2>
+<% end %>
 
 <table>
-  <thead>
-    <tr>
-      <th>Item name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
   <tbody>
     <% @items = Item.where(:list_id => params[:list_id]) %>
     <% @items.each do |item| %>
       <tr>
-        <td><%= item.item_name %></td>
-        <td><%= link_to 'Show', item_path(:id => item.id, :list_id => item.list_id) %></td>
+				<ul>
+        <td><li><%= item.item_name %></td>
+        <td><td><%= link_to 'Mostrar', item_path(:id => item.id, :list_id => item.list_id) %></td></td>
 	<% if current_user.id == User.find_by_id(List.find_by_id(params[:list_id]).user_id).id %>
-          <td><%= link_to 'Edit', edit_item_path(:id => item.id, :list_id => item.list_id) %></td>
-          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Editar', edit_item_path(:id => item.id, :list_id => item.list_id) %></td>
+          <td><%= link_to 'Borrar', item, method: :delete, data: { confirm: 'Desea borrar el item?' } %></td></li>
 	<% end %>
+				</ul>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<% if current_user.id == User.find_by_id(List.find_by_id(params[:list_id]).user_id).id %>
-  <%= link_to 'New Item', {:controller => :items, :action=>'new', :list_id => params[:list_id]} %> |
-<% end %>
-<% @uli = User.find_by_id(List.find_by_id(params[:list_id]).user_id) %>
-<% if current_user.id != @uli.id %>
-  <%= link_to 'Back to users lists', lists_path(:user => @uli) %> |
+<% if itemcondition %>
+  <%= link_to 'Nuevo Item', {:controller => :items, :action=>'new', :list_id => params[:list_id]} %> |
+<% else %>
+  <%= link_to 'Regresar', lists_path(:user => @uli) %> |
 <% end %> 
-<%= link_to 'Back to my lists', lists_path(:user => current_user.id) %>
+<%= link_to 'Mis listas', lists_path(:user => current_user.id) %>

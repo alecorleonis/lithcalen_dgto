@@ -1,28 +1,38 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @item.item_name %></h1>
+<ul>
 <p>
-  <strong>List:</strong>
-  <%= @item.list.list_name%>
+  <li>
+	<strong>Lista:</strong>
+  <%= @item.list.list_name%> 
+	</li>
 </p>
 
 <p>
-  <strong>Item name:</strong>
-  <%= @item.item_name %>
-</p>
-
-<p>
-  <strong>Item description:</strong>
+	<li>
+  <strong>Descripcion:</strong>
   <%= @item.item_description %>
+	</li>
 </p>
 
 <p>
-  <strong>Item rating:</strong>
+	<li>
+  <strong>Puntaje:</strong>
   <%= @item.item_rating %>
+	</li>
 </p>
 
 <p>
-  <strong>Item recommendation:</strong>
-  <%= @item.item_recommendation %>
+	<li>
+  <strong>Recomendacion:</strong>
+	<% if @item.item_recommendation == true %>
+		Si
+	<% else %>
+		No
+	<% end %>
+	</li>
 </p>
+</ul>
 
-<%= link_to 'Back', {:controller => :items, :action=>'index', :list_id => @item.list_id} %>
+<%= link_to 'Regresar', {:controller => :items, :action=>'index', :list_id => @item.list_id} %>

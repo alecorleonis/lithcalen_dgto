@@ -27,9 +27,9 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)  
     respond_to do |format|
       if Item.where(:item_name => @item.item_name, :list_id => @item.list_id).count != 0
-        format.html { redirect_to items_path(:list_id => @item.list_id), notice: "Item already exists" }
+        format.html { redirect_to items_path(:list_id => @item.list_id), notice: "El item ya existe" }
       elsif @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to @item, notice: 'El item fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.html { redirect_to @item, notice: 'El item ha sido actualizado.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_path(:list_id => @item.list_id), notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to items_path(:list_id => @item.list_id), notice: 'Item borrado.' }
       format.json { head :no_content }
     end
   end

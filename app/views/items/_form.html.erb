@@ -12,25 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :list_id %><br>
+    <%= f.label :Lista %><br>
     <%= f.hidden_field :list_id, {:value => params[:list_id], :name => 'item[list_id]'} %>
     <% @list = List.find_by_id(current_list).list_name %> 
     <%= @list %>
   </div>
   <div class="field">
-    <%= f.label :item_name %><br>
+    <%= f.label :Item %><br>
     <%= f.text_field :item_name %>
   </div>
   <div class="field">
-    <%= f.label :item_description %><br>
+    <%= f.label :Descripcion %><br>
     <%= f.text_area :item_description %>
   </div>
   <div class="field">
-    <%= f.label :item_rating %><br>
+    <%= f.label :Puntaje %><br>
     <%= f.number_field :item_rating %>
   </div>
   <div class="field">
-    <%= f.label :item_recommendation %><br>
+    <%= f.label :Recomendacion %><br>
     <%= f.check_box :item_recommendation %>
   </div>
   <div class="actions">

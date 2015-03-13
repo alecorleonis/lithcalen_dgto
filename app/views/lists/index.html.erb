@@ -1,24 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Lists From User: <%= User.find_by_id(params[:user]).username %></h1> 
+<% if params[:user].to_i == current_user.id %>
+	<h1>Mis Listas </h1>
+<% else %>
+	<h1>Listas</h1>
+	<h2>del Usuario: <%= User.find_by_id(params[:user]).username %></h2>
+<% end %> 
 
 <table>
-  <thead>
-    <tr>
-      <th>List name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
   <tbody>
     <% @lists = List.where(user_id: params[:user]) %>
     <% @lists.each do |list| %>
       <tr>
-        <td><%= link_to list.list_name, {:controller => :items, :action=>'index', :list_id => list.id} %></td>
+				<ul>
+        <td><td><li><%= link_to list.list_name, {:controller => :items, :action=>'index', :list_id => list.id} %></td></td>
 	<% if current_user.id == User.find_by_id(params[:user]).id %>
-          <td><%= link_to 'Edit', edit_list_path(list) %></td>
-          <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Editar', edit_list_path(:user => current_user.id, :id => list.id) %></td>
+          <td><%= link_to 'Borrar', list, method: :delete, data: { confirm: 'Desea borrar el item?' } %></td></li>
 	<% end %>
+				</ul>
       </tr>
     <% end %>
   </tbody>
@@ -26,10 +27,9 @@
 
 <br>
 
-<% if current_user.id == User.find_by_id(params[:user]).id %>
-  <%= link_to 'New List', {:controller => :lists, :action=>'new', :user => params[:user]} %> |
+<% if listcondition %>
+  <%= link_to 'Nueva Lista', {:controller => :lists, :action=>'new', :user => params[:user]} %> |
+<% else %>
+  <%= link_to 'Mis listas', lists_path(:user => current_user.id) %> |
 <% end %>
-<%= link_to 'All Users', users_path %> 
-<% if current_user.id != User.find_by_id(params[:user]).id %>
-  | <%= link_to 'Back to my Lists', lists_path(:user => current_user.id) %>
-<% end %>
+<%= link_to 'Todos los Usuarios', users_path %> 

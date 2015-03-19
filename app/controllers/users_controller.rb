@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
-  def new
+def new
+	if !current_user
   @user = User.new
+	else
+	lista = List.new
+	lista.user_id = current_user.id
+	redirect_to lists_path(:user => lista.user.id)
+	end
 end
 
 def create

@@ -33,7 +33,7 @@ class ListsController < ApplicationController
       if List.where(:list_name => @list.list_name, :user_id => current_user.id).count != 0
         format.html { redirect_to lists_path(:user => @list.user_id), notice: "La lista ya existe." }
       elsif @list.save
-        format.html { redirect_to @list, notice: 'La lista ha sido creada.' }
+        format.html { redirect_to lists_path(:user => @list.user_id), notice: 'La lista ha sido creada.' }
         format.json { render :show, status: :created, location: @list }
       else
         format.html { render :new }
@@ -60,7 +60,7 @@ class ListsController < ApplicationController
   def update
     respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to @list, notice: 'La lista ha sido actualizada.' }
+        format.html { redirect_to lists_path(:user => @list.user_id), notice: 'La lista ha sido actualizada.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

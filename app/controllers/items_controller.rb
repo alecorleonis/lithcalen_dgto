@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
       if Item.where(:item_name => @item.item_name, :list_id => @item.list_id).count != 0
         format.html { redirect_to items_path(:list_id => @item.list_id), notice: "El item ya existe" }
       elsif @item.save
-        format.html { redirect_to @item, notice: 'El item fue creado exitosamente.' }
+        format.html { redirect_to items_path(:list_id => @item.list_id), notice: 'El item fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'El item ha sido actualizado.' }
+        format.html { redirect_to items_path(:list_id => @item.list_id), notice: 'El item ha sido actualizado.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

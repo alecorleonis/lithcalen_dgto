@@ -1,3 +1,4 @@
+<% if !current_user %>
 <h1>Iniciar Sesion</h1>
 
 <%= form_tag sessions_path do %>
@@ -10,4 +11,9 @@
     <%= password_field_tag :password %>
   </p>
   <p class="button"><%= submit_tag "Iniciar Sesion" %></p>
+<% end %>
+<% else %>
+	<% lista = List.new %>
+	<% lista.user_id = current_user.id %>
+	<%= controller.redirect_to lists_path(:user => lista.user_id) %>
 <% end %>

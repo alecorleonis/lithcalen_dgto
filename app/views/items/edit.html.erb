@@ -2,5 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Mostrar', item_path(:id => @item.id, :list_id => @item.list_id) %> |
 <%= link_to 'Regresar', {:controller => :items, :action=>'index', :list_id => params[:list_id]} %>

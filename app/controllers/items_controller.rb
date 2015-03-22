@@ -4,7 +4,11 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
+		if current_user
     @items = Item.all
+		else
+		redirect_to log_in_path
+		end
   end
 
   # GET /items/1
@@ -14,7 +18,11 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
+		if current_user
     @item = Item.new
+		else
+		redirect_to log_in_path
+		end
   end
 
   # GET /items/1/edit
@@ -37,19 +45,6 @@ class ItemsController < ApplicationController
       end
     end  
   end
-  #def create
-   # @item = Item.new(item_params)
-
-    #respond_to do |format|
-      #if @item.save
-        #format.html { redirect_to @item, notice: 'Item was successfully created.' }
-       # format.json { render action: 'show', status: :created, location: @item }
-      #else
-      #  format.html { render action: 'new' }
-     #   format.json { render json: @item.errors, status: :unprocessable_entity }
-    #  end
-   # end
-  #end
 
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
@@ -78,7 +73,11 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
+			if current_user
       @item = Item.find(params[:id])
+			else
+			redirect_to log_in_path
+			end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

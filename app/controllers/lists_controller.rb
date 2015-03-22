@@ -7,7 +7,11 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
+		if current_user
     @lists = List.all
+		else
+		redirect_to log_in_path
+		end
   end
 
   # GET /lists/1
@@ -17,7 +21,11 @@ class ListsController < ApplicationController
 
   # GET /lists/new
   def new
+		if current_user
     @list = List.new
+		else
+		redirect_to log_in_path
+		end
   end
 
   # GET /lists/1/edit
@@ -82,7 +90,11 @@ class ListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
+			if current_user
       @list = List.find(params[:id])
+			else
+			redirect_to log_in_path
+			end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

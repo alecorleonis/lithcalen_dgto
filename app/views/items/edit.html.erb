@@ -1,5 +1,9 @@
+<% if current_user %>
 <h1>Editando <%= @item.item_name %></h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Regresar', {:controller => :items, :action=>'index', :list_id => params[:list_id]} %>
+<% else %>
+<%= controller.redirect_to log_in_path %>
+<% end %>

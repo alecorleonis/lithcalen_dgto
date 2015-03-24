@@ -9,14 +9,29 @@
 <body>
 
 <div id="user_nav">
+<p style="color:slategray">
   <% if current_user %>
-    Conectado como <%= current_user.username %>.
+    Conectado como <strong><%= current_user.username %></strong>.
     <%= link_to "Cerrar sesion", log_out_path %>
   <% else %>
     <%= link_to "Registrarse", sign_up_path %> o
 		<%= link_to "Iniciar Sesion", log_in_path %>
-  <% end %>
+  <% end %></p>
 </div>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	h1	 {
+				color:indianred;
+				}
+  p    {color:sienna}
+</style>
+</head>
+</html>
+<h1><font size="6" face="courier" color="seagreen">:: Lithcalen :: </font>
+<i><font size="2" face="courier" color="olivedrab">Recuerda lo que has visto...</font></i></h1>
 
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>

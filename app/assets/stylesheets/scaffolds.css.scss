@@ -1,11 +1,21 @@
 body {
-  background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
+  background-color: whitesmoke;
+  color: darksalmon;
+  font-family: helvetica, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
-
+a.button {
+  background: transparent url('bg_button_a.gif') no-repeat scroll top right;
+  color: #444;
+  display: block;
+  float: left;
+  font: normal 12px arial, sans-serif;
+  height: 24px;
+  margin-right: 6px;
+  padding-right: 18px; /* sliding doors padding */
+  text-decoration: none;
+}
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -19,13 +29,13 @@ pre {
 }
 
 a {
-  color: #000;
+  color: orange;
   &:visited {
-    color: #666;
+    color: teal;
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: whitesmoke;
+    background-color: teal;
   }
 }
 
@@ -36,7 +46,7 @@ div {
 }
 
 #notice {
-  color: green;
+  color: orange;
 }
 
 .field_with_errors {

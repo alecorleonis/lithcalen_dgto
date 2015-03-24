@@ -12,10 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :Lista %><br>
     <%= f.hidden_field :list_id, {:value => params[:list_id], :name => 'item[list_id]'} %>
-    <% @list = List.find_by_id(current_list).list_name %> 
-    <%= @list %>
   </div>
   <div class="field">
     <%= f.label :Item %><br>

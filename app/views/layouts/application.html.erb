@@ -2,22 +2,11 @@
 <html>
 <head>
   <title>Lithcalen</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "scaffolds", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<div id="user_nav">
-<p style="color:slategray">
-  <% if current_user %>
-    Conectado como <strong><%= current_user.username %></strong>.
-    <%= link_to "Cerrar sesion", log_out_path %>
-  <% else %>
-    <%= link_to "Registrarse", sign_up_path %> o
-		<%= link_to "Iniciar Sesion", log_in_path %>
-  <% end %></p>
-</div>
 
 <!DOCTYPE html>
 <html>
@@ -32,6 +21,17 @@
 </html>
 <h1><font size="6" face="courier" color="seagreen">:: Lithcalen :: </font>
 <i><font size="2" face="courier" color="olivedrab">Recuerda lo que has visto...</font></i></h1>
+
+<div id="user_nav">
+<p style="color:slategray">
+  <% if current_user %>
+    Conectado como <strong><%= current_user.username %></strong>.
+    <%= link_to "Cerrar sesion", log_out_path %>
+  <% else %>
+    <%= link_to "Registrarse", sign_up_path %> o
+		<%= link_to "Iniciar Sesion", log_in_path %>
+  <% end %></p>
+</div>
 
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>

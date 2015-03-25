@@ -19,10 +19,6 @@ def create
 end
 
 def index
-	if current_user
   @users = User.all
-	else
-	redirect_to log_in_path
-	end
 end 
 end

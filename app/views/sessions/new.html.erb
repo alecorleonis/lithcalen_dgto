@@ -11,6 +11,7 @@
     <%= password_field_tag :password %>
   </p>
   <p class="button"><%= submit_tag "Iniciar Sesion" %></p>
+	<%= link_to 'VER USUARIOS', users_path %>
 <% end %>
 <% else %>
 	<% lista = List.new %>

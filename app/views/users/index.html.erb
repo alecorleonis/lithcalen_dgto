@@ -9,13 +9,23 @@
   </thead>
 
   <tbody>
-    <% @users.where.not(id: current_user.id).each do |user| %>
+    <% if current_user %>
+			<% @users.where.not(id: current_user.id).each do |user| %>
       <tr>
 	<td><%= link_to user.username, {:controller => :lists, :action=>'index', :user => user.id}%></td>
       </tr>
     <% end %>
+		<% else %>
+			<% @users.each do |user| %>
+      <tr>
+	<td><%= link_to user.username, {:controller => :lists, :action=>'index', :user => user.id}%></td>
+      </tr>
+    <% end %>
+		<% end %>
   </tbody>
 </table>
 
 <br>
+<% if current_user %>
 <%= link_to 'Mis Listas', lists_path(:user => current_user.id) %>
+<% end %>

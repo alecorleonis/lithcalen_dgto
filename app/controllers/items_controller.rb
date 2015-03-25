@@ -4,11 +4,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-		if current_user
     @items = Item.all
-		else
-		redirect_to log_in_path
-		end
   end
 
   # GET /items/1
@@ -73,11 +69,7 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-			if current_user
       @item = Item.find(params[:id])
-			else
-			redirect_to log_in_path
-			end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

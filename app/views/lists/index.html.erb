@@ -1,9 +1,14 @@
+<% if current_user %>
 <% if params[:user].to_i == current_user.id %>
 	<h1>Mis Listas </h1>
 <% else %>
 	<h1>Listas</h1>
 	<h2>del Usuario: <%= User.find_by_id(params[:user]).username %></h2>
 <% end %> 
+<% else %>
+	<h1>Listas</h1>
+	<h2>del Usuario: <%= User.find_by_id(params[:user]).username %></h2>
+<% end %>
 
 <table>
 
@@ -13,10 +18,12 @@
       <tr>
 				<ul>
         <td><td><li><%= link_to list.list_name, {:controller => :items, :action=>'index', :list_id => list.id} %></td></td>
+<% if current_user %>
 	<% if current_user.id == User.find_by_id(params[:user]).id %>
           <td><%= link_to 'Editar', edit_list_path(:user => current_user.id, :id => list.id) %></td>
           <td><%= link_to 'Borrar', list, method: :delete, data: { confirm: 'Desea borrar el item?' } %></td></li>
 	<% end %>
+<% end %>
 				</ul>
       </tr>
     <% end %>
@@ -25,9 +32,13 @@
 
 <br>
 
+<% if current_user %>
 <% if listcondition %>
   <%= link_to 'Nueva Lista', {:controller => :lists, :action=>'new', :user => params[:user]} %> |
 <% else %>
   <%= link_to 'Mis listas', lists_path(:user => current_user.id) %> |
 <% end %>
 <%= link_to 'Todos los Usuarios', users_path %> 
+<% else %>
+	<%= link_to 'Todos los Usuarios', users_path %>
+<% end %>

@@ -7,11 +7,7 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-		if current_user
     @lists = List.all
-		else
-		redirect_to log_in_path
-		end
   end
 
   # GET /lists/1
